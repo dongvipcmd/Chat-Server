@@ -122,6 +122,8 @@ CREATE TABLE IF NOT EXISTS messages (
     file_id VARCHAR(36)
     REFERENCES chat_files(file_id) ON DELETE SET NULL,
 
+    recalled BOOLEAN NOT NULL DEFAULT FALSE,
+
     created_at BIGINT NOT NULL
     );
 
@@ -158,10 +160,10 @@ CREATE TABLE IF NOT EXISTS direct_messages (
 
     content TEXT NOT NULL,
 
-    -- NULL nếu là tin nhắn văn bản
-    -- Có giá trị nếu tin nhắn có file đính kèm
     file_id VARCHAR(36)
     REFERENCES chat_files(file_id) ON DELETE SET NULL,
+
+    recalled BOOLEAN NOT NULL DEFAULT FALSE,
 
     created_at BIGINT NOT NULL
     );
